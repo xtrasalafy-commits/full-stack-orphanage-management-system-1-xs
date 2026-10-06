@@ -5,7 +5,6 @@ import { db } from "@/db";
 import { basicNeeds, children, healthRecords, protectionCases } from "@/db/schema";
 import type { ResourceKey, Row } from "@/lib/resources";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const tables: Record<ResourceKey, any> = {
   children,
   needs: basicNeeds,

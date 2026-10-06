@@ -1,7 +1,7 @@
 import { count } from "drizzle-orm";
 import { db } from "@/db";
 import { basicNeeds, children, healthRecords, protectionCases, users } from "@/db/schema";
-import { hashPassword } from "@/lib/auth";
+import { hashPassword } from "@/lib/password";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const iso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;

@@ -1,29 +1,17 @@
 import "server-only";
-import { createHash, randomBytes, scryptSync, timingSafeEqual } from "crypto";
+import { createHash, randomBytes } from "crypto";
 import { cookies } from "next/headers";
 import { cache } from "react";
 import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { sessions, users } from "@/db/schema";
 
+export { hashPassword, verifyPassword } from "@/lib/password";
+
 export const SESSION_COOKIE = "simpa_session";
 const SESSION_DAYS = 7;
 
 export type SessionUser = { id: number; name: string; email: string; role: string };
-
-export function hashPassword(password: string): string {
-  const salt = randomBytes(16).toString("hex");
-  const hash = scryptSync(password, salt, 64).toString("hex");
-  return `${salt}:${hash}`;
-}
-
-export function verifyPassword(password: string, stored: string): boolean {
-  const [salt, hash] = stored.split(":");
-  if (!salt || !hash) return false;
-  const candidate = scryptSync(password, salt, 64);
-  const expected = Buffer.from(hash, "hex");
-  return candidate.length === expected.length && timingSafeEqual(candidate, expected);
-}
 
 const sha = (token: string) => createHash("sha256").update(token).digest("hex");
 

@@ -25,7 +25,6 @@ export async function POST(req: Request, { params }: Ctx) {
 
   try {
     const table = tableFor(resource);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [inserted] = await db.insert(table).values(data as any).returning({ id: table.id });
     return Response.json(await getResource(resource, inserted.id), { status: 201 });
   } catch (e) {

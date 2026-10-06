@@ -39,7 +39,6 @@ export async function PATCH(req: Request, ctx: Ctx) {
 
   try {
     const table = tableFor(g.resource);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const updated = await db.update(table).set(data as any).where(eq(table.id, g.id)).returning({ id: table.id });
     if (updated.length === 0) return Response.json({ error: "Tidak ditemukan" }, { status: 404 });
     return Response.json(await getResource(g.resource, g.id));

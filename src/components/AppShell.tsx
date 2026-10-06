@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Icon, Spinner, ToastProvider } from "@/components/ui";
 import { initials } from "@/lib/format";
 
@@ -40,8 +40,6 @@ export default function AppShell({
   const [open, setOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
 
-  useEffect(() => setOpen(false), [pathname]);
-
   async function logout() {
     setLoggingOut(true);
     await fetch("/api/auth/logout", { method: "POST" });
@@ -58,6 +56,7 @@ export default function AppShell({
           <Link
             key={item.href}
             href={item.href}
+            onClick={() => setOpen(false)}
             className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
               active
                 ? "bg-white/10 text-white shadow-inner ring-1 ring-white/10"
