@@ -1,12 +1,15 @@
 {
-  "name": "nextjs-postgresql-template",
+  "name": "simpa-harapan",
   "private": true,
   "scripts": {
+    "predev": "node scripts/build-assets.mjs",
+    "prebuild": "node scripts/build-assets.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "build:assets": "node scripts/build-assets.mjs",
     "db:push": "drizzle-kit push --config drizzle.config.json",
     "db:studio": "drizzle-kit studio --config drizzle.config.json",
     "db:seed": "tsx scripts/seed.ts"
@@ -24,12 +27,15 @@
     "@tailwindcss/postcss": "4.1.17",
     "@types/node": "22.19.15",
     "@types/pg": "8.18.0",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "archiver": "^8.0.0",
     "drizzle-kit": "0.31.10",
     "eslint": "9.39.4",
     "eslint-config-next": "16.2.6",
     "postcss": "8.5.8",
+    "qrcode": "^1.5.4",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3"
   }

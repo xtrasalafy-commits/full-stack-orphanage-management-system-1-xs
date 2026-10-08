@@ -29,6 +29,10 @@ yarn-error.log*
 .env.production
 .env.preview
 
+# generated assets (rebuilt on every `npm run dev`/`npm run build`)
+/public/qrcode-trakteer.png
+/public/simpa-harapan-source.zip
+
 # typescript
 *.tsbuildinfo
 
